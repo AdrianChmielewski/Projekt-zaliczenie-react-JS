@@ -1,0 +1,117 @@
+:root {
+  --timberwolf: #eadeda;
+  --cinereous: #998888;
+  --silver: #bfb8ad;
+  --burnt-umber: #823329;
+  --cordovan: #8a3033;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--timberwolf);
+  color: var(--cinereous);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--burnt-umber);
+}
+
+.home-page, .favorites-page {
+  padding: 20px;
+}
+
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-details {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid var(--cordovan);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  text-align: center;
+  background-color: var(--timberwolf);
+}
+
+.movie-details img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.movie-details img:hover {
+  transform: scale(1.05);
+}
+
+.movie-details h2 {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--cordovan);
+}
+
+.movie-details p {
+  font-size: 0.9em;
+  color: var(--silver);
+}
+
+.movie-details button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: var(--burnt-umber);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.movie-details button:hover {
+  background-color: var(--cordovan);
+  transform: translateY(-3px);
+}
+
+.movie-details:hover {
+  transform: scale(1.05);
+}
+
+.movie-details.removing {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.notification {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

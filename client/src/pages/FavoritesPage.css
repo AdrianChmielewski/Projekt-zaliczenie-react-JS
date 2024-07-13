@@ -1,0 +1,87 @@
+.favorites-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--timberwolf);
+    min-height: 100vh;
+    color: var(--cinereous);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .favorites-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--burnt-umber);
+  }
+  
+  .movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .movie-card {
+    background: var(--timberwolf);
+    color: var(--burnt-umber);
+    border: 1px solid var(--burnt-umber);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 200px;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-card img {
+    max-width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s;
+  }
+  
+  .movie-card img:hover {
+    transform: scale(1.05);
+  }
+  
+  .movie-card h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--cordovan);
+  }
+  
+  .movie-card p {
+    color: var(--cinereous);
+  }
+  
+  .movie-card .imdb-rating {
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--cordovan);
+  }
+  
+  .movie-card button {
+    background: var(--burnt-umber);
+    color: var(--timberwolf);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .movie-card button:hover {
+    background: var(--cordovan);
+    transform: translateY(-3px);
+  }
+  
