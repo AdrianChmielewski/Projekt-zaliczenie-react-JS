@@ -45,7 +45,7 @@ function MovieDetails({ movie, isHomePage, onRemove }) {
       setShowNotification(true);
       setTimeout(() => {
         setShowNotification(false);
-        if (onRemove) onRemove(movie.imdbID); // Wywołanie animacji usuwania
+        if (onRemove) onRemove(movie.imdbID);
       }, 3000);
     }
   };

@@ -8,18 +8,36 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    const token = localStorage.getItem('token');
+    if (storedUser && token) {
       setUser(JSON.parse(storedUser));
+      fetchFavorites(token);
     }
   }, []);
 
   useEffect(() => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
+      fetchFavorites(localStorage.getItem('token'));
     } else {
       localStorage.removeItem('user');
+      setFavorites([]);
     }
   }, [user]);
+
+  const fetchFavorites = async (token) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/movies/favorites', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      setFavorites(data);
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
+    }
+  };
 
   const register = async (username, email, password) => {
     try {
@@ -54,6 +72,7 @@ export const UserProvider = ({ children }) => {
       const data = await response.json();
       if (response.ok) {
         setUser(data.user);
+        localStorage.setItem('token', data.token);
         return { success: true };
       } else {
         return { success: false, message: data.message };
@@ -66,6 +85,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('token');
     alert('Wylogowano pomyślnie');
   };
 
@@ -81,8 +101,9 @@ export const UserProvider = ({ children }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify({ userId: user.id, movie }),
+        body: JSON.stringify({ imdbID: movie.imdbID, title: movie.Title, year: movie.Year, poster: movie.Poster }),
       });
     }
   };
@@ -98,8 +119,8 @@ export const UserProvider = ({ children }) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userId: user.id }),
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
     });
   };
 
